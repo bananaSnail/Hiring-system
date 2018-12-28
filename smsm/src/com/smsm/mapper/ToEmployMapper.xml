@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smsm.mapper.ToEmployMapper">
+  <resultMap id="BaseResultMap" type="com.smsm.pojo.ToEmploy">
+    <result column="job_seeker_id" jdbcType="VARCHAR" property="jobSeekerId" />
+    <result column="resume_id" jdbcType="VARCHAR" property="resumeId" />
+    <result column="job_id" jdbcType="VARCHAR" property="jobId" />
+    <result column="job_seeker_name" jdbcType="VARCHAR" property="jobSeekerName" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="exception_salary" jdbcType="INTEGER" property="exceptionSalary" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    job_seeker_id, resume_id, job_id, job_seeker_name, company_name, exception_salary
+  </sql>
+  <select id="selectByExample" parameterType="com.smsm.pojo.ToEmployExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from to_employ
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.smsm.pojo.ToEmployExample">
+    delete from to_employ
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smsm.pojo.ToEmploy">
+    insert into to_employ (job_seeker_id, resume_id, job_id, 
+      job_seeker_name, company_name, exception_salary
+      )
+    values (#{jobSeekerId,jdbcType=VARCHAR}, #{resumeId,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR}, 
+      #{jobSeekerName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{exceptionSalary,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smsm.pojo.ToEmploy">
+    insert into to_employ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobSeekerId != null">
+        job_seeker_id,
+      </if>
+      <if test="resumeId != null">
+        resume_id,
+      </if>
+      <if test="jobId != null">
+        job_id,
+      </if>
+      <if test="jobSeekerName != null">
+        job_seeker_name,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="exceptionSalary != null">
+        exception_salary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jobSeekerId != null">
+        #{jobSeekerId,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeId != null">
+        #{resumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSeekerName != null">
+        #{jobSeekerName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionSalary != null">
+        #{exceptionSalary,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.smsm.pojo.ToEmployExample" resultType="java.lang.Long">
+    select count(*) from to_employ
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update to_employ
+    <set>
+      <if test="record.jobSeekerId != null">
+        job_seeker_id = #{record.jobSeekerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resumeId != null">
+        resume_id = #{record.resumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobId != null">
+        job_id = #{record.jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobSeekerName != null">
+        job_seeker_name = #{record.jobSeekerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null">
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exceptionSalary != null">
+        exception_salary = #{record.exceptionSalary,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update to_employ
+    set job_seeker_id = #{record.jobSeekerId,jdbcType=VARCHAR},
+      resume_id = #{record.resumeId,jdbcType=VARCHAR},
+      job_id = #{record.jobId,jdbcType=VARCHAR},
+      job_seeker_name = #{record.jobSeekerName,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      exception_salary = #{record.exceptionSalary,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

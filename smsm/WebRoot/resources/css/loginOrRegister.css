@@ -1,0 +1,19 @@
+#logo img
+{
+	width: 80px;
+	border-radius: 50%;
+}
+.modal-dialog .modal-content .modal-header .modal-title
+{
+	text-align: right;
+	margin: 0 auto;
+	width: 50%;
+}
+.modal-dialog .modal-content .modal-header .close
+{
+	text-align: right;
+}
+.modal-dialog .modal-content .modal-body .form-control
+{
+	margin: 5px auto;
+}
