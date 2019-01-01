@@ -17,3 +17,11 @@
 {
 	margin: 5px auto;
 }
+.modal-dialog .modal-content .modal-body .account-type
+{
+	text-align: right;
+}
+.modal-dialog .modal-content .modal-body .business-account-wrapper
+{
+	display: none;
+}

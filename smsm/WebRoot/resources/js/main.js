@@ -216,6 +216,17 @@ $(document).ready(function () {
             });
         }
     }
-
+    
     $('#mc_embed_signup').find('form').ajaxChimp();
-});
+    
+    //login and register
+    $('input[name="account_type"]').change(function(){
+        if ($('input[name="account_type"][value="企业账号"]').prop("checked")) {
+            $('.business-account-wrapper').show();
+       } else {
+    	   $('.business-account-wrapper').hide();
+       }
+    })
+    
+    
+   });
