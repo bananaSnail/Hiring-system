@@ -1600,7 +1600,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu ul {
   position: absolute;
   display: none;
-  top: 100%;
+  top: 20%;
   left: 0;
   z-index: 99; }
 
@@ -1649,18 +1649,24 @@ h1, h2, h3, h4, h5, h6 {
   #nav-menu-container {
     display: none; } }
 /* Nav Meu Styling */
-.nav-menu a {
+.nav-menu a, .menu-has-children > span {
   padding: 0 8px 0px 8px;
   text-decoration: none;
   display: inline-block;
   color: #fff;
   font-size: 14px;
   text-transform: capitalize;
-  outline: none; }
+  outline: none; 
+}
+/*.menu-has-children #personal-content, .menu-has-children > #company-content, .menu-has-children > #showUserName {
+	display: none;
+}*/
 
 .nav-menu li:hover > a, .nav-menu > .menu-active > a {
   color: #222222; }
-
+.personal-option {
+	display:none;
+}
 .nav-menu > li {
   margin-left: 10px; }
 

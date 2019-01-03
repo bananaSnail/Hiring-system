@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.smsm.pojo.User">
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_phone" jdbcType="INTEGER" property="userPhone" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
     <result column="user_type" jdbcType="CHAR" property="userType" />
     <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
   </resultMap>
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     user_id, user_name, user_phone, user_type, user_pwd
   </sql>
-  <select id="selectByExample" parameterType="com.smsm.pojo.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.smsm.pojo.UserExample" resultType="java.util.Map">
     select
     <if test="distinct">
       distinct
@@ -102,7 +102,7 @@
   <insert id="insert" parameterType="com.smsm.pojo.User">
     insert into user (user_id, user_name, user_phone, 
       user_type, user_pwd)
-    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=INTEGER}, 
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
       #{userType,jdbcType=CHAR}, #{userPwd,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.smsm.pojo.User">
@@ -132,7 +132,7 @@
         #{userName,jdbcType=VARCHAR},
       </if>
       <if test="userPhone != null">
-        #{userPhone,jdbcType=INTEGER},
+        #{userPhone,jdbcType=VARCHAR},
       </if>
       <if test="userType != null">
         #{userType,jdbcType=CHAR},
@@ -158,7 +158,7 @@
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.userPhone != null">
-        user_phone = #{record.userPhone,jdbcType=INTEGER},
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
       </if>
       <if test="record.userType != null">
         user_type = #{record.userType,jdbcType=CHAR},
@@ -175,7 +175,7 @@
     update user
     set user_id = #{record.userId,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
-      user_phone = #{record.userPhone,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
       user_type = #{record.userType,jdbcType=CHAR},
       user_pwd = #{record.userPwd,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -189,7 +189,7 @@
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="userPhone != null">
-        user_phone = #{userPhone,jdbcType=INTEGER},
+        user_phone = #{userPhone,jdbcType=VARCHAR},
       </if>
       <if test="userType != null">
         user_type = #{userType,jdbcType=CHAR},
@@ -203,9 +203,23 @@
   <update id="updateByPrimaryKey" parameterType="com.smsm.pojo.User">
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
-      user_phone = #{userPhone,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=CHAR},
       user_pwd = #{userPwd,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectUser" resultType="java.util.Map">
+  	select *
+  	from user
+  </select>
+  
+  
+  <select id="selectByPrimaryKey1" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_phone = #{userPhone,jdbcType=VARCHAR}
+  </select>
+  
 </mapper>

@@ -12,16 +12,18 @@ body {
 	padding: 0px;
 	width: 100%; 
 }
+.scanRecruitInfo form {
+	width: 70%;
+}
 .newRecruitInfo {
 	width: 70%;
 	margin: 120px auto;
     height: 400px;
     color: #4e657a;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
 }
-..newRecruitInfo form {
+.newRecruitInfo form {
 	width: 70%;
 }
 .container {
@@ -330,14 +332,15 @@ thead {
   padding-right: 15px;
 }
 .form-control {
-  color: #fff;
   border: 1px solid #E8F2FE;
 }
 .form-control:focus {
   background-color: #E8F2FE;
-  color: #fff;
   border-color: transparent;
   box-shadow: 0 0 0 0.1rem rgb(180, 206, 233, 0.5);
+}
+.form-control option,input {
+	color: #495057;
 }
 .form-group label {
   color: #fff;
@@ -372,7 +375,6 @@ thead {
   margin-bottom: 20px;
 }
 .form-control {
-  padding: 19px 18px;
   border-radius: 0;
   height: 50px;
   width: 80%;

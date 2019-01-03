@@ -3,6 +3,8 @@ package com.smsm.mapper;
 import com.smsm.pojo.User;
 import com.smsm.pojo.UserExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -16,7 +18,7 @@ public interface UserMapper {
 
     int insertSelective(User record);
 
-    List<User> selectByExample(UserExample example);
+    List<Map<String, User>> selectByExample(UserExample example);
 
     User selectByPrimaryKey(String userId);
 
@@ -27,4 +29,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<Map<String, Object>> selectUser();
+    
+    User selectByPrimaryKey1(String userPhone);
 }
